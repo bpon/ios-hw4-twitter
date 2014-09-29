@@ -9,10 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +21,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func onLogin(sender: AnyObject) {
+        User.login({ user in
+            self.performSegueWithIdentifier("login", sender: self)
+        }, failure: { error in
+            println(error)
+        })
+    }
 
 }
 

@@ -12,10 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
+        
+        if (User.current != nil) {
+            let vc = storyboard.instantiateViewControllerWithIdentifier("homeViewController") as UIViewController
+            window?.rootViewController = vc
+        }
         return true
     }
 
@@ -41,6 +47,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String, annotation: AnyObject?) -> Bool {
+        TwitterClient.instance.openUrl(url)
+        return true
+    }
+    
+    func userDidLogout() {
+        let vc = storyboard.instantiateInitialViewController() as UIViewController
+        window?.rootViewController = vc
+    }
 }
 
