@@ -297,6 +297,9 @@
                     <navigationItem key="navigationItem" title="Tweet" id="4MZ-WB-pRk">
                         <barButtonItem key="rightBarButtonItem" title="Reply" id="xlO-qg-DTM">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="Fh0-h6-xgV" kind="presentation" identifier="reply" id="7Mw-Cg-mVO"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -507,6 +510,6 @@
         <image name="retweet" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="amx-1L-Maa"/>
+        <segue reference="7Mw-Cg-mVO"/>
     </inferredMetricsTieBreakers>
 </document>
