@@ -16,3 +16,5 @@
 - [ ] Optional: User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
 - [x] Optional: Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
 - [ ] Optional: User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
+
+![Demo](https://raw.githubusercontent.com/bpon/ios-hw3-yelp/master/demo.gif)
