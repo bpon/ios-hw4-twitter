@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    var refresh: UIRefreshControl!
     
     var tweets: [Tweet] = []
     
@@ -23,17 +24,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-        TwitterClient.instance.homeTimeline(nil, success: {tweets in
-            self.tweets = tweets
-            self.tableView.reloadData()
-        }, failure: {error in
-            println(error)
-        })
+        refresh = UIRefreshControl()
+        refresh.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refresh, atIndex: 0)
+        
+        loadData() {}
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "details") {
+            let selectedPath = tableView.indexPathForSelectedRow()!
+            (segue.destinationViewController as TweetViewController).tweet = tweets[selectedPath.row]
+            tableView.deselectRowAtIndexPath(selectedPath, animated: false)
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -46,7 +54,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.nameLabel.text = tweet.user.name
         cell.screenNameLabel.text = "@\(tweet.user.screenName)"
         cell.tweetLabel.text = tweet.text
-        //TODO created_at
+        cell.tweetedAtLabel.text = tweet.createdAtRelative
         return cell
     }
     
@@ -56,6 +64,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func onLogout(sender: AnyObject) {
         User.current?.logout()
+    }
+    
+    func onRefresh() {
+        loadData() {
+            self.refresh.endRefreshing()
+        }
+    }
+    
+    func loadData(onComplete: () -> ()) {
+        TwitterClient.instance.homeTimeline(nil, success: {tweets in
+            self.tweets = tweets
+            self.tableView.reloadData()
+            onComplete()
+        }, failure: {error in
+                println(error)
+        })
     }
 
     /*

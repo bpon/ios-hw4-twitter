@@ -66,6 +66,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     func homeTimeline(params: NSDictionary?, success: [Tweet] -> (), failure: NSError -> ()) {
         GET("1.1/statuses/home_timeline.json", parameters: params,
             success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                println("Home timeline: \(response)")
                 let tweets = (response as [NSDictionary]).map{Tweet(dictionary: $0)}
                 success(tweets)
             },
@@ -73,5 +74,33 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
                 failure(error)
             }
         )
+    }
+    
+    func tweet(text: String, success: Tweet -> (), failure: NSError -> ()) {
+        postTweet("statuses/update.json", params: ["status": text], success, failure)
+    }
+    
+    func reply(text: String, tweet: Tweet, success: Tweet -> (), failure: NSError -> ()) {
+        postTweet("statuses/update.json", params: ["status": text, "in_reply_to_status_id": tweet.id], success, failure)
+    }
+    
+    func retweet(tweet: Tweet, success: Tweet -> (), failure: NSError -> ()) {
+        postTweet("statuses/retweet/\(tweet.id).json", params: nil, success, failure)
+    }
+    
+    //Saves the current favorited status of the specified tweet
+    func saveFavorited(tweet: Tweet, success: Tweet -> (), failure: NSError -> ()) {
+        let op = tweet.favorited ? "create" : "destroy"
+        postTweet("favorites/\(op).json?id=\(tweet.id)", params: nil, success, failure)
+    }
+    
+    private func postTweet(path: String, params: NSDictionary?, success: Tweet -> (), failure: NSError -> ()) {
+        let endpoint = "1.1/\(path)"
+        println("POST \(endpoint)")
+        POST(endpoint, parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            success(Tweet(dictionary: response as NSDictionary))
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                failure(error)
+        }
     }
 }
