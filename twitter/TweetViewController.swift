@@ -36,12 +36,8 @@ class TweetViewController: UIViewController {
         screenNameLabel.text = "@\(tweet.user.screenName)"
         tweetLabel.text = tweet.text
         createdAtLabel.text = tweet.createdAtDetailed
-        retweetsLabel.text = "\(tweet.retweets)"
-        retweetsTextLabel.text = tweet.retweets == 1 ? "RETWEET" : "RETWEETS"
-        favoritesLabel.text = "\(tweet.favorites)"
-        favoritesTextLabel.text = tweet.favorites == 1 ? "FAVORITE" : "FAVORITES"
-        setRetweeted(tweet.retweeted)
-        setFavorited(tweet.favorited)
+        reloadRetweetViews()
+        reloadFavoriteViews()
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,13 +76,35 @@ class TweetViewController: UIViewController {
     }
     
     func setRetweeted(retweeted: Bool) {
+        if (tweet.retweeted && !retweeted) {
+            tweet.retweets -= 1
+        } else if (!tweet.retweeted && retweeted) {
+            tweet.retweets += 1
+        }
         tweet.retweeted = retweeted
-        retweetButton.imageView?.image = UIImage(named: tweet.retweeted ? "retweet-on" : "retweet")
+        reloadRetweetViews()
+    }
+    
+    func reloadRetweetViews() {
+        retweetsLabel.text = "\(tweet.retweets)"
+        retweetsTextLabel.text = tweet.retweets == 1 ? "RETWEET" : "RETWEETS"
+        retweetButton.setImage(UIImage(named: tweet.retweeted ? "retweet-on" : "retweet"), forState: nil)
     }
     
     func setFavorited(favorited: Bool) {
+        if (tweet.favorited && !favorited) {
+            tweet.favorites -= 1
+        } else if (!tweet.favorited && favorited) {
+            tweet.favorites += 1
+        }
         tweet.favorited = favorited
-        favoriteButton.imageView?.image = UIImage(named: tweet.favorited ? "favorite-on" : "favorite")
+        reloadFavoriteViews()
+    }
+    
+    func reloadFavoriteViews() {
+        favoritesLabel.text = "\(tweet.favorites)"
+        favoritesTextLabel.text = tweet.favorites == 1 ? "FAVORITE" : "FAVORITES"
+        favoriteButton.setImage(UIImage(named: tweet.favorited ? "favorite-on" : "favorite"), forState: nil)
     }
     
     /*
