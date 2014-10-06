@@ -17,7 +17,13 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var menuView: UIView!
     @IBOutlet var containerTapGesture: UITapGestureRecognizer!
     
-    var homeViewController: UIViewController!
+    lazy var homeViewController: UIViewController = self.getControllerByName("HomeViewController")
+    lazy var profileViewController: UIViewController = {
+        let nc = self.getControllerByName("ProfileViewController") as UINavigationController
+        let c = nc.viewControllers[0] as ProfileViewController
+        c.user = User.current
+        return c
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +37,6 @@ class MenuViewController: UIViewController {
         nameLabel.text = user.name
         screenNameLabel.text = "@\(user.screenName)"
         
-        homeViewController = storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as UIViewController
         setCurrentController(homeViewController, animated: false)
     }
     
@@ -47,6 +52,7 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func onTapProfile(sender: AnyObject) {
+        setCurrentController(profileViewController)
     }
     
     @IBAction func onTapTimeline(sender: AnyObject) {
@@ -91,7 +97,7 @@ class MenuViewController: UIViewController {
         }
     }
     
-    func hideMenu() {
+    private func hideMenu() {
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.menuView.frame.origin.x = -self.menuView.frame.width
             self.containerView.frame.origin.x = 0
@@ -100,13 +106,17 @@ class MenuViewController: UIViewController {
         }
     }
     
-    func showMenu() {
+    private func showMenu() {
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.menuView.frame.origin.x = 0
             self.containerView.frame.origin.x = self.menuView.frame.width
         }) { (s: Bool) -> Void in
             self.containerTapGesture.enabled = true
         }
+    }
+    
+    private func getControllerByName(name: String) -> UIViewController {
+        return storyboard?.instantiateViewControllerWithIdentifier(name) as UIViewController
     }
     
     /*

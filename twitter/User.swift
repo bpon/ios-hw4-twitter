@@ -19,12 +19,18 @@ class User: NSObject {
     var name: String
     var screenName: String
     var profileImageUrl: String
+    var tweetCount: Int
+    var followingCount: Int
+    var followerCount: Int
     
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
         name = dictionary["name"] as String
         screenName = dictionary["screen_name"] as String
         profileImageUrl = dictionary["profile_image_url"] as String
+        tweetCount = dictionary["statuses_count"] as Int
+        followingCount = dictionary["friends_count"] as Int
+        followerCount = dictionary["followers_count"] as Int
     }
     
     class func login(success: User -> (), failure: NSError -> ()) {
