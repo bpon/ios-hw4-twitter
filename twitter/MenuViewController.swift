@@ -15,6 +15,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var menuView: UIView!
+    @IBOutlet var containerTapGesture: UITapGestureRecognizer!
     
     var homeViewController: UIViewController!
     
@@ -37,6 +38,7 @@ class MenuViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         menuView.frame.origin.x = -menuView.frame.width
         containerView.frame = view.frame
+        containerTapGesture.enabled = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,14 +95,18 @@ class MenuViewController: UIViewController {
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.menuView.frame.origin.x = -self.menuView.frame.width
             self.containerView.frame.origin.x = 0
-        })
+        }) { (s: Bool) -> Void in
+            self.containerTapGesture.enabled = false
+        }
     }
     
     func showMenu() {
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.menuView.frame.origin.x = 0
             self.containerView.frame.origin.x = self.menuView.frame.width
-        })
+        }) { (s: Bool) -> Void in
+            self.containerTapGesture.enabled = true
+        }
     }
     
     /*

@@ -674,6 +674,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerTapGesture" destination="p2C-x7-c2F" id="8G4-tz-CKK"/>
                         <outlet property="containerView" destination="ihh-nB-QWc" id="dlF-xZ-gq0"/>
                         <outlet property="menuView" destination="kHz-2v-cHS" id="ViW-IB-hdX"/>
                         <outlet property="nameLabel" destination="nL1-h6-bCr" id="fTv-Ih-6H6"/>
@@ -802,6 +803,6 @@
         <image name="retweet" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JLL-RK-vDd"/>
+        <segue reference="amx-1L-Maa"/>
     </inferredMetricsTieBreakers>
 </document>
