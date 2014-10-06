@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
         
         if (User.current != nil) {
-            let vc = storyboard.instantiateViewControllerWithIdentifier("homeViewController") as UIViewController
+            let vc = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as UIViewController
             window?.rootViewController = vc
         }
         return true
