@@ -41,6 +41,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let selectedPath = tableView.indexPathForSelectedRow()!
             (segue.destinationViewController as TweetViewController).tweet = tweets[selectedPath.row]
             tableView.deselectRowAtIndexPath(selectedPath, animated: false)
+        } else if (segue.identifier == "profile") {
+            let photoButton = sender as UIButton
+            let c = (segue.destinationViewController as UINavigationController).viewControllers[0] as ProfileViewController
+            c.user = tweets[photoButton.tag].user
         }
     }
     
@@ -51,6 +55,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.userPhotoView.setImageWithURLRequest(photoRequest, placeholderImage: nil, success: { (request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) -> Void in
             cell.userPhotoView.image = image
         }, failure: nil)
+        cell.userPhotoButton.tag = indexPath.row
         cell.nameLabel.text = tweet.user.name
         cell.screenNameLabel.text = "@\(tweet.user.screenName)"
         cell.tweetLabel.text = tweet.text
@@ -81,7 +86,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 println(error)
         })
     }
-
+    
     /*
     // MARK: - Navigation
 

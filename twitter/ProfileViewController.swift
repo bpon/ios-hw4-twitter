@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        navigationController?.title = user == User.current ? "Me" : "@\(user.screenName)"
+        title = user == User.current ? "Me" : "@\(user.screenName)"
         
         let photoRequest = NSURLRequest(URL: NSURL(string: user.profileImageUrl))
         userPhotoView.setImageWithURLRequest(photoRequest, placeholderImage: nil, success: { (request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) -> Void in

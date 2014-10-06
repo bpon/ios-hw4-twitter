@@ -30,6 +30,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d2V-yu-aSR">
                                                     <rect key="frame" x="8" y="8" width="40" height="40"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="DiB-xK-rzo"/>
                                                         <constraint firstAttribute="height" constant="40" id="PqP-cC-ePU"/>
@@ -59,6 +60,15 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dv-jV-hlu">
+                                                    <rect key="frame" x="8" y="8" width="40" height="40"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="WtP-xP-eop" kind="show" identifier="profile" id="KgN-7Y-a8g"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="d2V-yu-aSR" firstAttribute="leading" secondItem="tlz-AH-q3O" secondAttribute="leadingMargin" id="1UN-Lp-t2n"/>
@@ -81,6 +91,7 @@
                                             <outlet property="screenNameLabel" destination="P66-ED-fBw" id="QFc-ZO-NBZ"/>
                                             <outlet property="tweetLabel" destination="416-OD-9Ow" id="1JE-kn-x3V"/>
                                             <outlet property="tweetedAtLabel" destination="Ozz-tn-QgN" id="vjz-zE-P5C"/>
+                                            <outlet property="userPhotoButton" destination="5dv-jV-hlu" id="bpw-xM-aMf"/>
                                             <outlet property="userPhotoView" destination="d2V-yu-aSR" id="Sd3-rT-2Js"/>
                                             <segue destination="phI-Ju-bul" kind="show" identifier="details" id="Acf-Of-sV5"/>
                                         </connections>
@@ -417,7 +428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baY-ay-oYK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1892" y="883"/>
+            <point key="canvasLocation" x="2349" y="883"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="JYx-wU-Pz6">
@@ -431,28 +442,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihh-nB-QWc" userLabel="Container View">
-                                <rect key="frame" x="280" y="0.0" width="320" height="600"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="ihh-nB-QWc" secondAttribute="height" multiplier="1:10" id="5Sz-f3-VEg"/>
-                                    <constraint firstAttribute="width" secondItem="ihh-nB-QWc" secondAttribute="height" multiplier="1:10" id="Old-ls-gpd"/>
-                                    <constraint firstAttribute="width" secondItem="ihh-nB-QWc" secondAttribute="height" multiplier="1:10" id="bhi-tD-mQM"/>
-                                    <constraint firstAttribute="width" constant="60" id="cMy-Mn-GZg"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="5Sz-f3-VEg"/>
-                                        <exclude reference="Old-ls-gpd"/>
-                                        <exclude reference="bhi-tD-mQM"/>
-                                        <exclude reference="cMy-Mn-GZg"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="p2C-x7-c2F" appends="YES" id="iHL-CH-7Kj"/>
-                                    <outletCollection property="gestureRecognizers" destination="H0k-db-ixl" appends="YES" id="TKb-Yc-5U8"/>
-                                </connections>
-                            </view>
                             <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHz-2v-cHS" userLabel="Menu View">
                                 <rect key="frame" x="0.0" y="0.0" width="280" height="600"/>
                                 <subviews>
@@ -477,7 +466,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@screenName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIe-jQ-cvp">
-                                        <rect key="frame" x="96" y="113" width="92.5" height="17"/>
+                                        <rect key="frame" x="96" y="113" width="93" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -500,7 +489,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxh-SV-t4D">
-                                                <rect key="frame" x="40" y="10" width="76.5" height="20.5"/>
+                                                <rect key="frame" x="40" y="10" width="77" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -544,7 +533,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Timeline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9i-4U-ocn">
-                                                <rect key="frame" x="40" y="10" width="92.5" height="20.5"/>
+                                                <rect key="frame" x="40" y="10" width="93" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -580,7 +569,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mentions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STo-ok-er0">
-                                                <rect key="frame" x="40" y="10" width="71" height="20.5"/>
+                                                <rect key="frame" x="40" y="10" width="71" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -660,6 +649,28 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihh-nB-QWc" userLabel="Container View">
+                                <rect key="frame" x="280" y="0.0" width="320" height="600"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ihh-nB-QWc" secondAttribute="height" multiplier="1:10" id="5Sz-f3-VEg"/>
+                                    <constraint firstAttribute="width" secondItem="ihh-nB-QWc" secondAttribute="height" multiplier="1:10" id="Old-ls-gpd"/>
+                                    <constraint firstAttribute="width" secondItem="ihh-nB-QWc" secondAttribute="height" multiplier="1:10" id="bhi-tD-mQM"/>
+                                    <constraint firstAttribute="width" constant="60" id="cMy-Mn-GZg"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5Sz-f3-VEg"/>
+                                        <exclude reference="Old-ls-gpd"/>
+                                        <exclude reference="bhi-tD-mQM"/>
+                                        <exclude reference="cMy-Mn-GZg"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="p2C-x7-c2F" appends="YES" id="iHL-CH-7Kj"/>
+                                    <outletCollection property="gestureRecognizers" destination="H0k-db-ixl" appends="YES" id="TKb-Yc-5U8"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -709,7 +720,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="156" y="1543"/>
+            <point key="canvasLocation" x="167" y="1628"/>
         </scene>
         <!--Me-->
         <scene sceneID="n14-qU-Jqq">
@@ -723,7 +734,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DF0-HY-4Eg" userLabel="Profile View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DF0-HY-4Eg" userLabel="Header View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="147"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eAq-aP-KwR">
@@ -741,7 +752,7 @@
                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@screenName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b45-pX-cdE">
-                                        <rect key="frame" x="254" y="121" width="92.5" height="18"/>
+                                        <rect key="frame" x="254" y="121" width="93" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -759,7 +770,7 @@
                                     <constraint firstAttribute="centerX" secondItem="Hby-Yh-KrZ" secondAttribute="centerX" id="utF-h6-m4f"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Mx-ye-hXr">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Mx-ye-hXr" userLabel="Summary View">
                                 <rect key="frame" x="0.0" y="211" width="600" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0W-Ls-yOd">
@@ -769,7 +780,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TWEETS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUz-Up-a1b">
-                                        <rect key="frame" x="184" y="25" width="56.5" height="17"/>
+                                        <rect key="frame" x="184" y="25" width="57" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -871,7 +882,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZEE-5B-Xdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1695" y="1595"/>
+            <point key="canvasLocation" x="926" y="1628"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Xd6-1e-KFZ">
@@ -956,12 +967,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNm-fi-AnQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="883"/>
+            <point key="canvasLocation" x="1629" y="883"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Profile Navigation Controller-->
         <scene sceneID="ntV-rX-KWt">
             <objects>
-                <navigationController storyboardIdentifier="ProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="WtP-xP-eop" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="WtP-xP-eop" userLabel="Profile Navigation Controller" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oY5-PM-BOF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -979,7 +990,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YyO-ka-o9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="883" y="1595"/>
+            <point key="canvasLocation" x="926" y="883"/>
         </scene>
     </scenes>
     <resources>
@@ -988,6 +999,6 @@
         <image name="retweet" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JLL-RK-vDd"/>
+        <segue reference="amx-1L-Maa"/>
     </inferredMetricsTieBreakers>
 </document>

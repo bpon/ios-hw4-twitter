@@ -22,7 +22,7 @@ class MenuViewController: UIViewController {
         let nc = self.getControllerByName("ProfileViewController") as UINavigationController
         let c = nc.viewControllers[0] as ProfileViewController
         c.user = User.current
-        return c
+        return nc
     }()
     
     override func viewDidLoad() {
@@ -81,20 +81,24 @@ class MenuViewController: UIViewController {
         let menuWidth = menuView.frame.width
         let translation = sender.translationInView(containerView)
         if (sender.state == UIGestureRecognizerState.Changed) {
-            if (translation.x < 0) {
-                self.menuView.frame.origin.x = translation.x
-                self.containerView.frame.origin.x = translation.x + menuWidth
-            } else if (translation.x > 0) {
-                self.menuView.frame.origin.x = translation.x - menuWidth
-                self.containerView.frame.origin.x = translation.x
+            if (!isMenuHidden() && translation.x < 0) {
+                menuView.frame.origin.x = translation.x
+                containerView.frame.origin.x = translation.x + menuWidth
+            } else if (isMenuHidden() && translation.x > 0) {
+                menuView.frame.origin.x = translation.x - menuWidth
+                containerView.frame.origin.x = translation.x
             }
         } else if (sender.state == UIGestureRecognizerState.Ended) {
             if (translation.x < -menuWidth/2 || (translation.x > 0 && translation.x < menuWidth/2)) {
                 hideMenu()
-            } else if (translation.x != 0) {
+            } else if ((isMenuHidden() && translation.x > 0) || (!isMenuHidden() && translation.x < 0)) {
                 showMenu()
             }
         }
+    }
+    
+    private func isMenuHidden() -> Bool {
+        return !containerTapGesture.enabled
     }
     
     private func hideMenu() {
