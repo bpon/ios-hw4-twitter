@@ -450,6 +450,7 @@
                                 </variation>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="p2C-x7-c2F" appends="YES" id="iHL-CH-7Kj"/>
+                                    <outletCollection property="gestureRecognizers" destination="H0k-db-ixl" appends="YES" id="TKb-Yc-5U8"/>
                                 </connections>
                             </view>
                             <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHz-2v-cHS" userLabel="Menu View">
@@ -613,6 +614,7 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.34789644549999998" green="0.66414468159999995" blue="0.95394212369999998" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="0eO-zm-xNC"/>
                                     <constraint firstItem="oQv-zt-L6i" firstAttribute="top" secondItem="kHz-2v-cHS" secondAttribute="top" id="1XU-qI-M6P"/>
@@ -660,6 +662,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="kHz-2v-cHS" firstAttribute="leading" secondItem="naS-C8-gM0" secondAttribute="leadingMargin" constant="-16" id="3Fc-Up-ry7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ihh-nB-QWc" secondAttribute="trailing" constant="-16" id="Me1-vV-P8F"/>
@@ -699,6 +702,11 @@
                         <action selector="onTapContainer:" destination="mMa-pV-7kh" id="a9q-6k-Ix8"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="H0k-db-ixl" userLabel="Pan Container">
+                    <connections>
+                        <action selector="onPanContainer:" destination="mMa-pV-7kh" id="Vkg-ul-P6d"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="156" y="1543"/>
         </scene>

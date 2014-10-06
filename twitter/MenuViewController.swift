@@ -31,8 +31,12 @@ class MenuViewController: UIViewController {
         screenNameLabel.text = "@\(user.screenName)"
         
         homeViewController = storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as UIViewController
-        
-        setCurrentController(homeViewController)
+        setCurrentController(homeViewController, animated: false)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        menuView.frame.origin.x = -menuView.frame.width
+        containerView.frame = view.frame
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,19 +54,53 @@ class MenuViewController: UIViewController {
     @IBAction func onTapMentions(sender: AnyObject) {
     }
     
-    func setCurrentController(c: UIViewController) {
+    func setCurrentController(c: UIViewController, animated: Bool = true) {
+        if (animated) {
+            hideMenu()
+        }
         containerView.frame = UIScreen.mainScreen().bounds
         addChildViewController(c)
         c.view.frame = containerView.frame
         containerView.addSubview(c.view)
         c.didMoveToParentViewController(self)
-        /*UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.view.center.x -= 100
-        })*/
     }
     
     @IBAction func onTapContainer(sender: AnyObject) {
-        println("tap")
+        hideMenu()
+    }
+
+    @IBAction func onPanContainer(sender: UIPanGestureRecognizer) {
+        let menuWidth = menuView.frame.width
+        let translation = sender.translationInView(containerView)
+        if (sender.state == UIGestureRecognizerState.Changed) {
+            if (translation.x < 0) {
+                self.menuView.frame.origin.x = translation.x
+                self.containerView.frame.origin.x = translation.x + menuWidth
+            } else if (translation.x > 0) {
+                self.menuView.frame.origin.x = translation.x - menuWidth
+                self.containerView.frame.origin.x = translation.x
+            }
+        } else if (sender.state == UIGestureRecognizerState.Ended) {
+            if (translation.x < -menuWidth/2 || (translation.x > 0 && translation.x < menuWidth/2)) {
+                hideMenu()
+            } else if (translation.x != 0) {
+                showMenu()
+            }
+        }
+    }
+    
+    func hideMenu() {
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.menuView.frame.origin.x = -self.menuView.frame.width
+            self.containerView.frame.origin.x = 0
+        })
+    }
+    
+    func showMenu() {
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.menuView.frame.origin.x = 0
+            self.containerView.frame.origin.x = self.menuView.frame.width
+        })
     }
     
     /*
