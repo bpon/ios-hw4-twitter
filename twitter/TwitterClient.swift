@@ -104,3 +104,23 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         }
     }
 }
+
+extension String {
+    
+    subscript(r: Range<Int>) -> String {
+        let start = advance(startIndex, r.startIndex)
+        let end = advance(startIndex, r.endIndex)
+        return substringWithRange(Range(start: start, end: end))
+    }
+}
+
+extension UIColor {
+    
+    class func colorWithHexString(s: String, a: CGFloat = 1) -> UIColor {
+        var r: CUnsignedInt = 0, g: CUnsignedInt = 0, b: CUnsignedInt = 0
+        NSScanner(string: s[0...1]).scanHexInt(&r)
+        NSScanner(string: s[2...3]).scanHexInt(&g)
+        NSScanner(string: s[4...5]).scanHexInt(&b)
+        return UIColor(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: a)
+    }
+}

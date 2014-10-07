@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var userPhotoView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
@@ -27,12 +28,15 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
         title = user == User.current ? "Me" : "@\(user.screenName)"
         
+        headerView.backgroundColor = user.profileBackgroundColor
         let photoRequest = NSURLRequest(URL: NSURL(string: user.profileImageUrl))
         userPhotoView.setImageWithURLRequest(photoRequest, placeholderImage: nil, success: { (request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) -> Void in
             self.userPhotoView.image = image
-            }, failure: nil)
+        }, failure: nil)
         nameLabel.text = user.name
+        nameLabel.textColor = user.profileTextColor
         screenNameLabel.text = "@\(user.screenName)"
+        screenNameLabel.textColor = user.profileTextColor
         tweetsLabel.text = "\(user.tweetCount)"
         followingLabel.text = "\(user.followingCount)"
         followersLabel.text = "\(user.followerCount)"

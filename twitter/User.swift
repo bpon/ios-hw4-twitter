@@ -19,6 +19,8 @@ class User: NSObject {
     var name: String
     var screenName: String
     var profileImageUrl: String
+    var profileBackgroundColor: UIColor
+    var profileTextColor: UIColor
     var tweetCount: Int
     var followingCount: Int
     var followerCount: Int
@@ -28,6 +30,8 @@ class User: NSObject {
         name = dictionary["name"] as String
         screenName = dictionary["screen_name"] as String
         profileImageUrl = dictionary["profile_image_url"] as String
+        profileBackgroundColor = UIColor.colorWithHexString(dictionary["profile_background_color"] as String)
+        profileTextColor = UIColor.colorWithHexString(dictionary["profile_text_color"] as String)
         tweetCount = dictionary["statuses_count"] as Int
         followingCount = dictionary["friends_count"] as Int
         followerCount = dictionary["followers_count"] as Int

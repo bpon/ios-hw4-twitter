@@ -734,7 +734,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DF0-HY-4Eg" userLabel="Header View">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DF0-HY-4Eg" userLabel="Header View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="147"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eAq-aP-KwR">
@@ -744,19 +744,17 @@
                                             <constraint firstAttribute="height" constant="80" id="RbW-xH-rgI"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hby-Yh-KrZ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="My Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hby-Yh-KrZ">
                                         <rect key="frame" x="256" y="96" width="88" height="25"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
-                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@screenName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b45-pX-cdE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="@screenName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b45-pX-cdE">
                                         <rect key="frame" x="254" y="121" width="93" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
-                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -770,7 +768,7 @@
                                     <constraint firstAttribute="centerX" secondItem="Hby-Yh-KrZ" secondAttribute="centerX" id="utF-h6-m4f"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Mx-ye-hXr" userLabel="Summary View">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Mx-ye-hXr" userLabel="Summary View">
                                 <rect key="frame" x="0.0" y="211" width="600" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0W-Ls-yOd">
@@ -873,6 +871,7 @@
                         <outlet property="followersLabel" destination="F5V-eN-Khz" id="Vmg-hG-9A8"/>
                         <outlet property="followersTextLabel" destination="z9V-L8-g47" id="BbP-2I-OcZ"/>
                         <outlet property="followingLabel" destination="NJL-5x-koY" id="ESZ-BO-Iy9"/>
+                        <outlet property="headerView" destination="DF0-HY-4Eg" id="k05-Mi-fmL"/>
                         <outlet property="nameLabel" destination="Hby-Yh-KrZ" id="C1b-ix-RPf"/>
                         <outlet property="screenNameLabel" destination="b45-pX-cdE" id="1Uq-f2-pK8"/>
                         <outlet property="tweetsLabel" destination="L0W-Ls-yOd" id="xTh-p7-Fwy"/>
