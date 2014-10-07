@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: TimelineViewController {
 
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var userPhotoView: UIImageView!
@@ -49,6 +49,9 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func tableViewFetchData(success: [Tweet] -> (), failure: NSError -> ()) {
+        TwitterClient.instance.userTimeline(user.screenName, params: nil, success: success, failure: failure)
+    }
 
     /*
     // MARK: - Navigation
