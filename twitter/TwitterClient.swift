@@ -71,6 +71,10 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         getTimeline("statuses/user_timeline.json?screen_name=\(screenName)", params: nil, success: success, failure: failure)
     }
     
+    func mentionsTimeline(params: NSDictionary?, success: [Tweet] -> (), failure: NSError -> ()) {
+        getTimeline("statuses/mentions_timeline.json", params: nil, success: success, failure: failure)
+    }
+    
     private func getTimeline(path: String, params: NSDictionary?, success: [Tweet] -> (), failure: NSError -> ()) {
         GET("1.1/\(path)", parameters: params,
             success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in

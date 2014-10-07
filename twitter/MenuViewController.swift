@@ -24,6 +24,7 @@ class MenuViewController: UIViewController {
         c.user = User.current
         return nc
     }()
+    lazy var mentionsViewController: UIViewController = self.getControllerByName("MentionsViewController")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,7 @@ class MenuViewController: UIViewController {
     }
 
     @IBAction func onTapMentions(sender: AnyObject) {
+        setCurrentController(mentionsViewController)
     }
     
     func setCurrentController(c: UIViewController, animated: Bool = true) {
